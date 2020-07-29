@@ -10,13 +10,14 @@ const styles = {
     }
 }
 
-function AddToDo({onCreate}) {
+function AddToDo(props) {
     const [value, setValue] = useState('')
 
     function submitHandler(event) {
         event.preventDefault() 
         if (value.trim()) {
-            onCreate(value)
+            console.log(props.date);
+            props.onCreate(value, props.date)
             setValue('')
         }
     }

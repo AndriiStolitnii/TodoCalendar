@@ -12,6 +12,15 @@ const App = () => {
 
   const [date, setDate] = useState(new Date());
 
+  function addToDo(title, date) {
+    setTodos(todos.concat([{
+      title,
+      date,
+      id: todos.length + 1,
+      completed: false
+    }]))
+  }
+
   function toggleToDo(id) {
     setTodos(
       todos.map(todo => {
@@ -27,21 +36,12 @@ const App = () => {
     setTodos(todos.filter(todo => todo.id !== id))
   }
 
-  const addToDo = (title, date) => {
-    setTodos(todos.concat([{
-      title,
-      date,
-      id: todos.length + 1,
-      completed: false
-    }]))
-  }
-
   return (
     <Context.Provider value={{removeToDo}}>
       <div>
         <ReactCalendar />
         <ToDoList todos={todos} onToggle={toggleToDo}/>
-        <AddToDo onCreate={addToDo}/>
+        <AddToDo onCreate={addToDo} date={date}/>
       </div>
     </Context.Provider>
   );
