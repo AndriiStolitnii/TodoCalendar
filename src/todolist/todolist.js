@@ -1,5 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
 import ToDoItem from './todoitem'; 
 
 const styles = {
@@ -10,7 +9,10 @@ const styles = {
     }
 }
 
-function ToDoList(props) {
+const ToDoList = (props=> {
+
+    console.log(props.todos)
+
     return (
         <ul style = {styles.ul}>
             {props.todos.map((todo,i) =>{
@@ -18,11 +20,6 @@ function ToDoList(props) {
             })}
         </ul>
     )
-}
-
-ToDoList.propTypes = {
-    todos: PropTypes.arrayOf(PropTypes.object).isRequired,
-    onToggle: PropTypes.func.isRequired 
-}
+})
 
 export default ToDoList;

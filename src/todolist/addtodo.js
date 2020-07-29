@@ -27,6 +27,7 @@ function AddToDo({onCreate}) {
             <button style={styles.button} type="submit">Add todo</button>
         </form>
     )
+
 }
 
 export default AddToDo

@@ -1,5 +1,4 @@
 import React, {useContext} from 'react'
-import PropTypes from 'prop-types'
 import Context from '../context'
 
 const styles = {
@@ -39,12 +38,6 @@ function ToDoItem({todo, i, onChange}) {
             <button onClick={()=>removeToDo(todo.id)}>&times;</button>
         </li>
     )
-}
-
-ToDoItem.propTypes = {
-    todo: PropTypes.object.isRequired,
-    index: PropTypes.number,
-    onChange: PropTypes.func.isRequired
 }
 
 export default ToDoItem;

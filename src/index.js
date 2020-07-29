@@ -1,20 +1,16 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { render } from "react-dom";
-import 'react-calendar/dist/Calendar.css';
-import Calendar from "react-calendar";
+import ReactCalendar from "./calendar/calendar";
 import ToDoList from "./todolist/todolist";
 import './index.css'
 import Context from "./context";
-import AddToDo from './todolist/addtodo'
+import AddToDo from './todolist/addtodo';
 
-const ReactCalendar = () => {
+const App = () => {
+  
+  const [todos, setTodos] = useState([]);
+
   const [date, setDate] = useState(new Date());
-
-  const [todos, setTodos] = useState([])
-
-  const onChange = date => {
-    setDate(date);
-  };
 
   function toggleToDo(id) {
     setTodos(
@@ -31,10 +27,11 @@ const ReactCalendar = () => {
     setTodos(todos.filter(todo => todo.id !== id))
   }
 
-  function addToDo(title) {
+  const addToDo = (title, date) => {
     setTodos(todos.concat([{
       title,
-      id: Date.now(),
+      date,
+      id: todos.length + 1,
       completed: false
     }]))
   }
@@ -42,7 +39,7 @@ const ReactCalendar = () => {
   return (
     <Context.Provider value={{removeToDo}}>
       <div>
-        <Calendar onChange={onChange} value={date} />
+        <ReactCalendar />
         <ToDoList todos={todos} onToggle={toggleToDo}/>
         <AddToDo onCreate={addToDo}/>
       </div>
@@ -50,4 +47,4 @@ const ReactCalendar = () => {
   );
 };
 
-render(<ReactCalendar />, document.querySelector("#root"));
+render(<App />, document.querySelector("#root"))
