@@ -8,12 +8,11 @@ const ReactCalendar = (props) => {
     const onClickDay = date => {
       setDate(date);
       props.updateDate(date);
-      props.renderTodos();
     }
   
     return (
       <div>
-        <Calendar onClickDay={onClickDay} value={date} />
+        <Calendar onClickDay={onClickDay} value={date} locale="en-EN"/>
       </div>
     );
   };

@@ -16,10 +16,6 @@ const ToDo = () => {
     setDate(date);
   }
 
-  const renderTodos = () => {
-    ToDoList(todos, toggleToDo, date);
-  }
-
   function addToDo(title, date) {
     setTodos(todos.concat([{
       title,
@@ -47,7 +43,7 @@ const ToDo = () => {
   return (
     <Context.Provider value={{removeToDo}}>
       <div>
-        <ReactCalendar updateDate={updateDate} renderTodos={renderTodos}/>
+        <ReactCalendar updateDate={updateDate}/>
         <ToDoList todos={todos} onToggle={toggleToDo} date={date}/>
         <AddToDo onCreate={addToDo} date={date}/>
       </div>
