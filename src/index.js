@@ -6,11 +6,19 @@ import './index.css'
 import Context from "./context";
 import AddToDo from './todolist/addtodo';
 
-const App = () => {
+const ToDo = () => {
   
   const [todos, setTodos] = useState([]);
 
   const [date, setDate] = useState(new Date());
+
+  const updateDate = (date) => {
+    setDate(date);
+  }
+
+  const renderTodos = () => {
+    ToDoList(todos, toggleToDo, date);
+  }
 
   function addToDo(title, date) {
     setTodos(todos.concat([{
@@ -39,12 +47,12 @@ const App = () => {
   return (
     <Context.Provider value={{removeToDo}}>
       <div>
-        <ReactCalendar />
-        <ToDoList todos={todos} onToggle={toggleToDo}/>
+        <ReactCalendar updateDate={updateDate} renderTodos={renderTodos}/>
+        <ToDoList todos={todos} onToggle={toggleToDo} date={date}/>
         <AddToDo onCreate={addToDo} date={date}/>
       </div>
     </Context.Provider>
   );
 };
 
-render(<App />, document.querySelector("#root"))
+render(<ToDo />, document.querySelector("#root"))

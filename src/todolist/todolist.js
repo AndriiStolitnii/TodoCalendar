@@ -12,11 +12,12 @@ const styles = {
 const ToDoList = (props=> {
 
     console.log(props.todos)
+    console.log(props.date)
 
     return (
         <ul style = {styles.ul}>
-            {props.todos.map((todo,i) =>{
-                return <ToDoItem todo={todo} key={todo.id} i={i} onChange={props.onToggle}/>
+            {props.todos.filter(todo=>todo.date===props.date).map((todo,i) =>{
+                return <ToDoItem todo={todo} key={todo.id} i={i} onChange={props.onToggle} date={props.date}/>
             })}
         </ul>
     )

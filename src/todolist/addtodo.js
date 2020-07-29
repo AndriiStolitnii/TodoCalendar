@@ -16,7 +16,6 @@ function AddToDo(props) {
     function submitHandler(event) {
         event.preventDefault() 
         if (value.trim()) {
-            console.log(props.date);
             props.onCreate(value, props.date)
             setValue('')
         }

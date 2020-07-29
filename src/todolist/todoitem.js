@@ -16,13 +16,13 @@ const styles = {
     }
 }
 
-function ToDoItem({todo, i, onChange}) {
+function ToDoItem({todo, i, onChange, date}) {
     const { removeToDo } = useContext(Context);
     const classes = [];
     if(todo.completed) {
         classes.push('done');
     }
-
+    
     return (
         <li style={styles.li}>
             <span className={classes.join(' ')}>
