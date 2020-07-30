@@ -17,12 +17,12 @@ const styles = {
 }
 
 function ToDoItem({todo, i, onChange, date}) {
-    const { removeToDo } = useContext(Context);
+    const { removeToDo, startEditToDo } = useContext(Context);
     const classes = [];
     if(todo.completed) {
         classes.push('done');
     }
-    
+
     return (
         <li style={styles.li}>
             <span className={classes.join(' ')}>
@@ -32,9 +32,11 @@ function ToDoItem({todo, i, onChange, date}) {
                 checked={todo.completed}
                 onChange={()=> onChange(todo.id)}/>
                 <strong>{i+1}. </strong>
+                <span className='category'>{todo.category}: </span>
                 {todo.title}
             </span>
 
+            <button onClick={()=>startEditToDo(todo)}>&#xf044;</button>
             <button onClick={()=>removeToDo(todo.id)}>&times;</button>
         </li>
     )
