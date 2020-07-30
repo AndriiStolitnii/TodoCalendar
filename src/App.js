@@ -4,6 +4,7 @@ import ToDoList from "./todolist/todolist";
 import './index.css'
 import Context from "./context";
 import AddToDo from './todolist/addtodo';
+import Loader from './loader'
 
 const App = () => {
   
@@ -18,6 +19,8 @@ const App = () => {
   const [editingTitle, setEditingTitle] = useState('');
 
   const [editingCategory, setEditingCategory] = useState('')
+
+  const [loading, setLoading] = useState(false)
 
   const updateDate = (date) => {
     setDate(date);
@@ -70,8 +73,9 @@ const App = () => {
   return (
     <Context.Provider value={{removeToDo, startEditToDo}}>
       <div>
-        <ReactCalendar updateDate={updateDate}/>
-        <ToDoList todos={todos} onToggle={toggleToDo} date={date}/>
+        <ReactCalendar updateDate={updateDate} setLoading={setLoading}/>
+        {loading && <Loader />}
+        {loading ? null : <ToDoList todos={todos} onToggle={toggleToDo} date={date}/>}
         <AddToDo onCreate={addToDo} date={date} editing={editing} onEdit={editToDo} editingId={editingId} editingTitle={editingTitle} setEditingTitle={setEditingTitle} editingCategory={editingCategory} setEditingCategory={setEditingCategory}/>
       </div>
     </Context.Provider>

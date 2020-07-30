@@ -16,7 +16,7 @@ const styles = {
     }
 }
 
-function ToDoItem({todo, i, onChange, date}) {
+function ToDoItem({todo, i, onChange}) {
     const { removeToDo, startEditToDo } = useContext(Context);
     const classes = [];
     if(todo.completed) {

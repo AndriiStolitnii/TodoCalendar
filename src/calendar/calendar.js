@@ -4,10 +4,14 @@ import Calendar from "react-calendar"
 
 const ReactCalendar = (props) => {
     const [date, setDate] = useState(new Date())
-
+    
     const onClickDay = date => {
       setDate(date);
-      props.updateDate(date);
+      props.setLoading(true);
+      setTimeout(() => {
+        props.updateDate(date);
+        props.setLoading(false)
+      }, 1000);
     }
   
     return (
