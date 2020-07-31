@@ -16,7 +16,7 @@ const ReactCalendar = (props) => {
   
     return (
       <div>
-        <Calendar onClickDay={onClickDay} value={date} locale="en-EN"/>
+        <Calendar className={'calendar'} onClickDay={onClickDay} value={date} locale="en-EN"/>
       </div>
     );
   };

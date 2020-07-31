@@ -4,14 +4,13 @@ import ToDoItem from './todoitem';
 const styles = {
     ul: {
         listStyle: 'none',
-        margin: 0,
-        padding: 0
+        margin: '1rem auto',
+        padding: 0,
+        width: '400px'
     }
 }
 
 const ToDoList = (props=> {
-
-    console.log(props.todos)
 
     return (
         <ul style = {styles.ul}>

@@ -2,11 +2,18 @@ import React, { useState } from 'react'
 
 const styles = {
     form: {
-        marginTop: '1rem'
+        margin: '1rem auto',
+        width: '400px',
+        boxSizing: 'border-box'
     },
     button: {
         marginLeft: '1rem',
+        marginRight: '1 rem',
+        float: 'right',
         fontSize: '1rem'
+    },
+    input: {
+        marginLeft: '2rem'
     }
 }
 
@@ -23,40 +30,17 @@ function AddToDo(props) {
         }
     }
 
-    function submitEdit(event) {
-        event.preventDefault() 
-        if (props.editingTitle.trim()) {
-            props.onEdit(props.editingTitle, props.editingId, props.editingCategory)
-            setValue('')
-            setCategory('code')
-        }
-    }
-
-    if (!props.editing) {
-        return (
-            <form style={styles.form} onSubmit={submitAdd}>
-                <select value={category} onChange={event => setCategory(event.target.value)}>
-                    <option value='code'>Code</option>
-                    <option value='meeting'>Meeting</option>
-                    <option value='research'>Research</option>
-                </select>
-                <input value={value} onChange={event => setValue(event.target.value)}/>
-                <button style={styles.button} type="submit">Add todo</button>
-            </form>
-        )
-    } else {
-        return (
-            <form style={styles.form} onSubmit={submitEdit}>
-                <select value={props.editingCategory} onChange={event => props.setEditingCategory(event.target.value)}>
-                    <option value='code'>Code</option>
-                    <option value='meeting'>Meeting</option>
-                    <option value='research'>Research</option>
-                </select>
-                <input value={props.editingTitle} onChange={event => props.setEditingTitle(event.target.value)}/>
-                <button style={styles.button} type="submit">Edit todo</button>
-            </form>
-        )
-    }
+    return (
+        <form style={styles.form} onSubmit={submitAdd}>
+            <select value={category} onChange={event => setCategory(event.target.value)}>
+                <option value='code'>Code</option>
+                <option value='meeting'>Meeting</option>
+                <option value='research'>Research</option>
+            </select>
+            <input style={styles.input} value={value} onChange={event => setValue(event.target.value)}/>
+            <button style={styles.button} type="submit">Add todo</button>
+        </form>
+    )
 
 }
 

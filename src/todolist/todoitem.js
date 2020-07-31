@@ -1,12 +1,13 @@
 import React, {useContext} from 'react'
 import Context from '../context'
+import { AiFillEdit, AiFillDelete } from "react-icons/ai"
+import { IconContext } from "react-icons"
 
 const styles = {
     li: {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: '.5rem 1rem',
         border: '1px solid #ccc',
         borderRadius: '4px',
         marginBottom: '.5rem'
@@ -35,9 +36,12 @@ function ToDoItem({todo, i, onChange}) {
                 <span className='category'>{todo.category}: </span>
                 {todo.title}
             </span>
-
-            <button onClick={()=>startEditToDo(todo)}>&#xf044;</button>
-            <button onClick={()=>removeToDo(todo.id)}>&times;</button>
+            <IconContext.Provider value={{color: "#006edc"}}>
+                <div>
+                    <button style={{border: 0}} onClick={()=>startEditToDo(todo)}><AiFillEdit /></button>
+                    <button style={{border: 0}} onClick={()=>removeToDo(todo.id)}><AiFillDelete /></button>
+                </div>
+            </IconContext.Provider>    
         </li>
     )
 }

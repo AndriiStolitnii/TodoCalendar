@@ -5,6 +5,7 @@ import './index.css'
 import Context from "./context";
 import AddToDo from './todolist/addtodo';
 import Loader from './loader'
+import EditToDo from "./todolist/editToDo";
 
 const App = () => {
   
@@ -52,11 +53,10 @@ const App = () => {
   }
 
   function startEditToDo(todo) {
-    setEditing(true);
-    setEditingId(todo.id);
-    setEditingTitle(todo.title);
-    setEditingCategory(todo.category);
-    console.log('edit', todo);
+    setEditing(true)
+    setEditingId(todo.id)
+    setEditingTitle(todo.title)
+    setEditingCategory(todo.category)
   }
 
   function editToDo(title, id, category) {
@@ -72,11 +72,10 @@ const App = () => {
 
   return (
     <Context.Provider value={{removeToDo, startEditToDo}}>
-      <div>
+      <div className='wrapper'>
         <ReactCalendar updateDate={updateDate} setLoading={setLoading}/>
-        {loading && <Loader />}
-        {loading ? null : <ToDoList todos={todos} onToggle={toggleToDo} date={date}/>}
-        <AddToDo onCreate={addToDo} date={date} editing={editing} onEdit={editToDo} editingId={editingId} editingTitle={editingTitle} setEditingTitle={setEditingTitle} editingCategory={editingCategory} setEditingCategory={setEditingCategory}/>
+        {loading ? <Loader /> : <ToDoList todos={todos} onToggle={toggleToDo} date={date}/>}
+        {editing ? <EditToDo onEdit={editToDo} editingId={editingId} editingTitle={editingTitle} setEditingTitle={setEditingTitle} editingCategory={editingCategory} setEditingCategory={setEditingCategory}/> : <AddToDo onCreate={addToDo} date={date} />}     
       </div>
     </Context.Provider>
   );

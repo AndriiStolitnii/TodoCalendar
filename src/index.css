@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -104,4 +105,15 @@ code {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 800px;
+  justify-content: center;
+}
+
+.calendar {
+  margin: 0 auto;
+  width: 400px;
 }
